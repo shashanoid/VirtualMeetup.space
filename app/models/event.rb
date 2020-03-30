@@ -1,5 +1,4 @@
 class Event < ApplicationRecord
-    #[TODO] -- Add validation for time and category
-    validates :title, presence: true
+    validates :title, :start_time, :category, presence: true
 
 end

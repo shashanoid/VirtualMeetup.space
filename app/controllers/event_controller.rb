@@ -1,11 +1,9 @@
 class EventController < ApplicationController
 
-  def create(event_params)
-    @event = Event.create(payload: event_params)
+  def create(title, start_time, end_time, category, tags)
+    @event = Event.create(title: title, start_time: start_time, end_time: end_time, category: category, tags: tags)
     @event.save
-
-    redirect_to @event
-  end
+   end
 
   def create_event
   end

@@ -69,6 +69,7 @@ packages/babel-standalone/babel.min.js
 /.changelog
 
 /development.log
+/.log
 /cache
 /eslint/*/lib
 /eslint/*/node_modules

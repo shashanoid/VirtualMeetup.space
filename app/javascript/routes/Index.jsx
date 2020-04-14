@@ -6,10 +6,10 @@ import Event from "../components/Event";
 export default (
   <Router>
     <Switch>
-      <Route path="/" exact component={Home} />
+      <Route exact path="/" component={Home} />
 
       {/* Event paths */}
-      <Route path="/event/create_event" exact component={Event} />
+      <Route exact path="/event/create_event" component={Event} />
     </Switch>
   </Router>
 );

@@ -68,6 +68,11 @@ packages/babel-standalone/babel.min.js
 .idea/
 /.changelog
 
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
 /development.log
 /.log
 /cache

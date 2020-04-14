@@ -944,3 +944,10 @@ Processing by HomepageController#index as HTML
 Completed 200 OK in 9ms (Views: 8.5ms | ActiveRecord: 0.0ms | Allocations: 3663)
 
 
+Started GET "/" for 127.0.0.1 at 2020-04-14 18:24:48 -0400
+Processing by HomepageController#index as HTML
+  Rendering homepage/index.html.erb within layouts/application
+  Rendered homepage/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 9ms (Views: 7.6ms | ActiveRecord: 0.0ms | Allocations: 3662)
+
+

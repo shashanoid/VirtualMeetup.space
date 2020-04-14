@@ -68,6 +68,7 @@ packages/babel-standalone/babel.min.js
 .idea/
 /.changelog
 
+/cache
 /eslint/*/lib
 /eslint/*/node_modules
 /eslint/*/LICENSE

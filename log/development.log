@@ -839,3 +839,59 @@ Processing by EventController#create_event as HTML
 Completed 200 OK in 19ms (Views: 15.3ms | ActiveRecord: 0.0ms | Allocations: 6693)
 
 
+Started GET "/" for 127.0.0.1 at 2020-04-14 18:18:32 -0400
+Processing by HomepageController#index as HTML
+  Rendering homepage/index.html.erb within layouts/application
+  Rendered homepage/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 12ms (Views: 10.5ms | ActiveRecord: 0.0ms | Allocations: 3666)
+
+
+Started GET "/" for 127.0.0.1 at 2020-04-14 18:18:37 -0400
+Processing by HomepageController#index as HTML
+  Rendering homepage/index.html.erb within layouts/application
+  Rendered homepage/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 44ms (Views: 43.3ms | ActiveRecord: 0.0ms | Allocations: 3665)
+
+
+Started GET "/" for 127.0.0.1 at 2020-04-14 18:18:42 -0400
+Processing by HomepageController#index as HTML
+  Rendering homepage/index.html.erb within layouts/application
+  Rendered homepage/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 5)
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.0ms | Allocations: 3669)
+
+
+Started GET "/event/create_event/" for 127.0.0.1 at 2020-04-14 18:18:52 -0400
+Processing by EventController#create_event as HTML
+  Rendering event/create_event.html.erb within layouts/application
+  Rendered event/create_event.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 10ms (Views: 7.1ms | ActiveRecord: 0.0ms | Allocations: 3664)
+
+
+Started GET "/" for 127.0.0.1 at 2020-04-14 18:18:54 -0400
+Processing by HomepageController#index as HTML
+  Rendering homepage/index.html.erb within layouts/application
+  Rendered homepage/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.0ms | Allocations: 3660)
+
+
+Started GET "/event/create_event/" for 127.0.0.1 at 2020-04-14 18:19:06 -0400
+Processing by EventController#create_event as HTML
+  Rendering event/create_event.html.erb within layouts/application
+  Rendered event/create_event.html.erb within layouts/application (Duration: 0.1ms | Allocations: 4)
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 0.0ms | Allocations: 3660)
+
+
+Started GET "/" for 127.0.0.1 at 2020-04-14 18:19:08 -0400
+Processing by HomepageController#index as HTML
+  Rendering homepage/index.html.erb within layouts/application
+  Rendered homepage/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 9ms (Views: 7.9ms | ActiveRecord: 0.0ms | Allocations: 3664)
+
+
+Started GET "/" for 127.0.0.1 at 2020-04-14 18:19:09 -0400
+Processing by HomepageController#index as HTML
+  Rendering homepage/index.html.erb within layouts/application
+  Rendered homepage/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 4)
+Completed 200 OK in 9ms (Views: 8.5ms | ActiveRecord: 0.0ms | Allocations: 3666)
+
+

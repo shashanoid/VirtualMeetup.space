@@ -76,7 +76,7 @@ packages/babel-standalone/babel.min.js
 !/log/.keep
 !/tmp/.keep
 tmp/
-
+public/packs/manifest.json
 /development.log
 /.log
 /cache

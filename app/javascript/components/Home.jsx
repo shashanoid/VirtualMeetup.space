@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./home.css";
 
 const autoBind = require("auto-bind");
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+
+// API utils
+import { getUserInfo } from "../api/utils";
 
 class Home extends React.Component {
   constructor(props) {
@@ -15,17 +17,30 @@ class Home extends React.Component {
       userLoggedIn: false,
       showSignUp: false,
       isCreating: false,
+      profilePicture: null,
     };
   }
 
-  componentDidMount() {
-    //[TODO]
+  async componentDidMount() {
+    let { userLoggedIn } = this.state;
+    var userInfoResponse = await getUserInfo();
+    if (!userInfoResponse.error) {
+      this.setState({
+        userLoggedIn: true,
+        profilePicture: userInfoResponse.picture,
+      });
+      console.log(userInfoResponse);
+    } else {
+      console.log("ERROR");
+    }
   }
 
   handleCreate() {
     let { userLoggedIn } = this.state;
     {
-      userLoggedIn ? this.setState({ isCreating: true }) : this.setState({ showSignUp: true });;
+      userLoggedIn
+        ? this.setState({ isCreating: true })
+        : this.setState({ showSignUp: true });
     }
   }
 
@@ -40,11 +55,28 @@ class Home extends React.Component {
   }
 
   renderSignUp() {
-    return(
-      <div className="signup-container">
-        SIGN UP GOOGLE
+    return (
+      <div
+        onClick={() => (window.location.href = "/login")}
+        className="signup-container"
+      >
+        SIGN IN GOOGLE
       </div>
-    )
+    );
+  }
+
+  async handleLogout() {
+    await this.setState({
+      userLoggedIn: false,
+    });
+    window.location.href = "/logout";
+  }
+
+  async handleAccountPage() {
+    let { isAccountDetailsPage } = this.state;
+    await this.setState({
+      isAccountDetailsPage: !isAccountDetailsPage,
+    });
   }
 
   render() {
@@ -53,9 +85,10 @@ class Home extends React.Component {
       userLoggedIn,
       showSignUp,
       isCreating,
+      profilePicture,
     } = this.state;
     return (
-      <div class="container">
+      <div className="container">
         <div className="row title-container">
           <div className="col-auto homepage-title">
             {isAccountDetailsPage ? "ACCOUNT" : "HOME"}
@@ -63,11 +96,22 @@ class Home extends React.Component {
           <div className="col profile-icon-container">
             <div className="profile-icon">
               {userLoggedIn ? (
+                <img className="profile-icon" src={profilePicture} />
+              ) : null}
+              {userLoggedIn ? (
                 <div className="dropdown-content">
-                  <div className="dropdown-link">
+                  <div
+                    onClick={() => this.handleAccountPage()}
+                    className="dropdown-link"
+                  >
                     {isAccountDetailsPage ? "Home" : "Account"}
                   </div>
-                  <div className="dropdown-link">Logout</div>
+                  <div
+                    onClick={() => this.handleLogout()}
+                    className="dropdown-link"
+                  >
+                    Logout
+                  </div>
                 </div>
               ) : null}
             </div>

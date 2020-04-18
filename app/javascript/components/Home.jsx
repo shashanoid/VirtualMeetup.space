@@ -12,7 +12,9 @@ class Home extends React.Component {
     autoBind(this);
     this.state = {
       isAccountDetailsPage: false,
-      userLoggedIn: true,
+      userLoggedIn: false,
+      showSignUp: false,
+      isCreating: false,
     };
   }
 
@@ -20,8 +22,38 @@ class Home extends React.Component {
     //[TODO]
   }
 
+  handleCreate() {
+    let { userLoggedIn } = this.state;
+    {
+      userLoggedIn ? this.setState({ isCreating: true }) : this.setState({ showSignUp: true });;
+    }
+  }
+
+  renderCreate() {
+    return (
+      <div className="create-container">
+        <div className="create-public">Public</div>
+
+        <div className="create-private">Private</div>
+      </div>
+    );
+  }
+
+  renderSignUp() {
+    return(
+      <div className="signup-container">
+        SIGN UP GOOGLE
+      </div>
+    )
+  }
+
   render() {
-    let { isAccountDetailsPage, userLoggedIn } = this.state;
+    let {
+      isAccountDetailsPage,
+      userLoggedIn,
+      showSignUp,
+      isCreating,
+    } = this.state;
     return (
       <div class="container">
         <div className="row title-container">
@@ -47,7 +79,13 @@ class Home extends React.Component {
         <div className="row cards-container">
           <div className="browse-card">BROWSE</div>
 
-          <div className="create-card">CREATE</div>
+          <div onClick={() => this.handleCreate()} className="create-card">
+            {showSignUp
+              ? this.renderSignUp()
+              : isCreating
+              ? this.renderCreate()
+              : "CREATE"}
+          </div>
         </div>
       </div>
     );
@@ -63,7 +101,6 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       // Actions go here
-      
     },
     dispatch
   );

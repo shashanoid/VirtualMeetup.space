@@ -1,34 +1,71 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./home.css";
+
+const autoBind = require("auto-bind");
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
+    autoBind(this);
+    this.state = {
+      isAccountDetailsPage: false,
+      userLoggedIn: true,
+    };
+  }
+
+  componentDidMount() {
+    //[TODO]
   }
 
   render() {
+    let { isAccountDetailsPage, userLoggedIn } = this.state;
     return (
-      <div>
-        <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
-          <div className="jumbotron jumbotron-fluid bg-transparent">
-            <div className="container secondary-color">
-              <h1 className="display-4">Browse Meetups</h1>
-              <hr className="my-4" />
-
-              <Link
-                to="/event/create_event/"
-                className="btn custom-button"
-                role="button"
-              >
-                <h1 className="display-4">Create</h1>
-              </Link>
-              <hr className="my-4" />
+      <div class="container">
+        <div className="row title-container">
+          <div className="col-auto homepage-title">
+            {isAccountDetailsPage ? "ACCOUNT" : "HOME"}
+          </div>
+          <div className="col profile-icon-container">
+            <div className="profile-icon">
+              {userLoggedIn ? (
+                <div className="dropdown-content">
+                  <div className="dropdown-link">
+                    {isAccountDetailsPage ? "Home" : "Account"}
+                  </div>
+                  <div className="dropdown-link">Logout</div>
+                </div>
+              ) : null}
             </div>
           </div>
+        </div>
+
+        <div className="row tagline-container">Work Better Together.</div>
+
+        <div className="row cards-container">
+          <div className="browse-card">BROWSE</div>
+
+          <div className="create-card">CREATE</div>
         </div>
       </div>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  const { test } = state;
+  return { test };
+};
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      // Actions go here
+      
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

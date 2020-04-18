@@ -1,15 +1,27 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "../components/Home";
-import Event from "../components/Event";
+import "./index.css";
+import "typeface-roboto";
+
+// Redux Setup
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "../reducers/rootReducer";
+
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export default (
-  <Router>
-    <Switch>
-      <Route exact path="/" component={Home} />
-
-      {/* Event paths */}
-      <Route exact path="/event/create_event" component={Event} />
-    </Switch>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <div className="appWrapper">
+        <Switch>
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </div>
+    </Router>
+  </Provider>
 );

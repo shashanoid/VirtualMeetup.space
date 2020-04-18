@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  # Event routes
-  get 'event/create_event'
-  post 'event/create'
+  get 'user/new'
 
 
   root 'homepage#index'

@@ -6,6 +6,7 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
+    "auto-bind": "^4.0.0",
     "bootstrap": "^4.4.1",
     "globalize": "^1.5.0",
     "jquery": "^3.4.1",
@@ -14,10 +15,12 @@
     "react": "^16.13.1",
     "react-datetime": "^2.16.3",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-widgets": "^4.5.0",
     "react-widgets-globalize": "^5.0.21",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "typeface-roboto": "0.0.75"
   },
   "version": "0.1.0",
   "devDependencies": {

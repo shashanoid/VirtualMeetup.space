@@ -1,5 +1,6 @@
 .npmrc
 
+
 .yarn/cache
 .yarn/unplugged
 .yarn/build-state.yml
@@ -7,7 +8,9 @@
 .pnp.js
 
 .DS_Store
+node_modules
 /node_modules
+/node_modules/*
 /.github/actions/*/node_modules
 /packages/*/node_modules
 /packages/*/LICENSE

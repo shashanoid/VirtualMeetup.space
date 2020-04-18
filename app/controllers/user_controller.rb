@@ -1,5 +1,7 @@
 class UserController < ApplicationController
-  def new
+  before_action :authenticate
+
+  def show
   end
 
 end

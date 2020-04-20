@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./home.css";
 
 const autoBind = require("auto-bind");
@@ -7,6 +8,7 @@ import { connect } from "react-redux";
 
 // API utils
 import { getUserInfo } from "../api/utils";
+import { userInfoAction } from "../actions/userInfoAction";
 
 class Home extends React.Component {
   constructor(props) {
@@ -22,19 +24,19 @@ class Home extends React.Component {
   }
 
   async componentDidMount() {
-    let { userLoggedIn } = this.state;
     var userInfoResponse = await getUserInfo();
+    await this.props.userInfoAction(userInfoResponse);
     if (!userInfoResponse.error) {
       this.setState({
         userLoggedIn: true,
         profilePicture: userInfoResponse.picture,
       });
-      console.log(userInfoResponse);
     } else {
       console.log("ERROR");
     }
   }
 
+  // Handles when create card is clicked
   handleCreate() {
     let { userLoggedIn } = this.state;
     {
@@ -44,12 +46,31 @@ class Home extends React.Component {
     }
   }
 
+  // Inside of the create card
   renderCreate() {
+    var randomRoomKey =
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15);
+
     return (
       <div className="create-container">
-        <div className="create-public">Public</div>
+        <div className="create-public">
+          <Link
+            to={`/meet/public/${randomRoomKey}`}
+            style={{ textDecoration: "none", color: "#000000" }}
+          >
+            Public
+          </Link>
+        </div>
 
-        <div className="create-private">Private</div>
+        <div className="create-private">
+          <Link
+            to={`/meet/private/${randomRoomKey}`}
+            style={{ textDecoration: "none", color: "#000000" }}
+          >
+            Private
+          </Link>
+        </div>
       </div>
     );
   }
@@ -87,6 +108,7 @@ class Home extends React.Component {
       isCreating,
       profilePicture,
     } = this.state;
+
     return (
       <div className="container">
         <div className="row title-container">
@@ -137,14 +159,15 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { test } = state;
-  return { test };
+  const { userInfo } = state;
+  return { userInfo };
 };
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       // Actions go here
+      userInfoAction,
     },
     dispatch
   );

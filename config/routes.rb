@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'room/create', to: 'room#create'
+  get '/meet' ,to: "room#show"
   #User management
 
   # Google auth

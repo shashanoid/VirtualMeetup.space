@@ -82,6 +82,7 @@
   align-items: center;
   font-size: 36px;
   font-weight: 300;
+  color: #000000;
 }
 
 .create-card {
@@ -95,6 +96,7 @@
   align-items: center;
   font-size: 36px;
   font-weight: 300;
+  color: #000000;
 }
 
 .create-container {
@@ -123,6 +125,5 @@
 }
 
 
-.signup-container{
-  
+.signup-container {
 }

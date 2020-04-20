@@ -20,6 +20,7 @@
     "react-router-dom": "^5.1.2",
     "react-widgets": "^4.5.0",
     "react-widgets-globalize": "^5.0.21",
+    "snake-case": "^3.0.3",
     "turbolinks": "^5.2.0",
     "typeface-roboto": "0.0.75"
   },

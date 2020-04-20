@@ -1,9 +1,10 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 import { render } from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import App from "../components/App";
 
-document.addEventListener("turbolinks:load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   render(<App />, document.body.appendChild(document.createElement("div")));
 });

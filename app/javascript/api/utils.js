@@ -9,16 +9,11 @@ export async function getUserInfo() {
   }
 }
 
-export async function createRoom(type, roomId) {
-  if (type === "public") {
+export async function createRoom(roomData) {
+  if (roomData.room_type === "public") {
     try {
       const response = await axios.post("/room/create", {
-        room: {
-          title: "Test Room",
-          host: "Test Host",
-          room_id: roomId,
-          room_type: type,
-        },
+        room: roomData,
       });
 
       return response.data;
@@ -33,7 +28,7 @@ export async function createRoom(type, roomId) {
           title: "Test Room",
           host: "Test Host",
           room_id: "niceone123",
-          room_type: type,
+          room_type: "priv",
         },
       });
 

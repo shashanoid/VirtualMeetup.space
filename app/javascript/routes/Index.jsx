@@ -22,7 +22,7 @@ export default (
       <div className="appWrapper">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/meet/:room_type/:room_id" component={Room} />
+          <Route exact path="/meet/:room_type/:room_name/:host/:room_id" component={Room} />
         </Switch>
       </div>
     </Router>

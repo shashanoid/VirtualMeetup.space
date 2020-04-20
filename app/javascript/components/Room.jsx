@@ -18,26 +18,35 @@ class Room extends React.Component {
   async componentDidMount() {
     let splitURL = window.location.href.split("/");
     let roomType = splitURL[4];
-    let roomId = splitURL[5];
+    let roomTitle = splitURL[5];
+    let roomHost = splitURL[6];
+    let roomId = splitURL[7];
 
-    let roomDetails = await createRoom(roomType, roomId);
-    await this.props.roomInfoAction(roomDetails);
+    let roomData = {
+      title: roomTitle,
+      host: roomHost,
+      room_id: roomId,
+      room_type: roomType,
+    };
 
-    console.log(roomDetails);
+    let roomInfo = await createRoom(roomData);
+    await this.props.roomInfoAction(roomInfo);
+
+    console.log(roomInfo);
   }
 
   render() {
     return (
       <div>
-        <h1>Room Created !</h1>{" "}
+        <h1>Room Created !</h1>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { test, room } = state;
-  return { test, room };
+  const { test, room, userInfo } = state;
+  return { test, room, userInfo };
 };
 
 const mapDispatchToProps = (dispatch) =>

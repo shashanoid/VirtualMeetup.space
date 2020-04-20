@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { snakeCase } from "snake-case";
 import "./home.css";
 
 const autoBind = require("auto-bind");
@@ -52,11 +53,16 @@ class Home extends React.Component {
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15);
 
+    var roomName = "some room name";
+    var roomName = snakeCase(roomName);
+
+    var roomHost = "Host Guy"
+    var roomHost = snakeCase(roomHost)
     return (
       <div className="create-container">
         <div className="create-public">
           <Link
-            to={`/meet/public/${randomRoomKey}`}
+            to={`/meet/public/${roomName}/${roomHost}/${randomRoomKey}`}
             style={{ textDecoration: "none", color: "#000000" }}
           >
             Public
@@ -65,7 +71,7 @@ class Home extends React.Component {
 
         <div className="create-private">
           <Link
-            to={`/meet/private/${randomRoomKey}`}
+            to={`/meet/private/${roomName}/${roomHost}/${randomRoomKey}`}
             style={{ textDecoration: "none", color: "#000000" }}
           >
             Private

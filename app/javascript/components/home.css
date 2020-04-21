@@ -7,7 +7,7 @@
   font-size: 24px;
   letter-spacing: 1.6px;
   color: #000000;
-  border-bottom: 2px solid #ef4141;
+  border-bottom: 1.5px solid #000000;
 }
 
 .profile-icon-container {
@@ -64,19 +64,68 @@
   align-items: center;
 }
 
-.cards-container {
+.info-cards-container{
+  width: 100%;
+  height: 630px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 8%;
+}
+
+
+.cards-container{
+  width: 48%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px
+}
+
+.middle-line{
+  width: 0.2%;
+  height: 100%;
+  background-color: #000000;
+}
+
+.info-container{
+  width: 48%;
+  height: 100%;
+}
+
+.info-tagline{
+  font-size: 28px;
+  font-weight: 400;
+  margin-top: 32%;
+}
+
+.info-description{
+  font-size: 28px;
+  font-weight: lighter;
+  margin-top: 4%;
+}
+
+.social-login-buttons{
+  cursor: pointer;
+  margin-top: 8%;
+  width: inherit;
+}
+
+/* .cards-container {
   height: 400px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
+} */
 
 .browse-card {
   cursor: pointer;
   background: #d8d8d8;
   border-radius: 4px;
-  height: 72%;
-  width: 40%;
+  height: 46%;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,8 +138,8 @@
   cursor: pointer;
   background: #d8d8d8;
   border-radius: 4px;
-  height: 72%;
-  width: 40%;
+  height: 46%;
+  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,3 +176,5 @@
 
 .signup-container {
 }
+
+

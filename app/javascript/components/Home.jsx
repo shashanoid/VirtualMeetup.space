@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { snakeCase } from "snake-case";
 import "./home.css";
 
 const autoBind = require("auto-bind");
@@ -8,7 +9,14 @@ import { connect } from "react-redux";
 
 // API utils
 import { getUserInfo } from "../api/utils";
+import { createRoom } from "../api/utils";
+
+// Redux
+import { roomInfoAction } from "../actions/roomInfoAction";
 import { userInfoAction } from "../actions/userInfoAction";
+
+// Image Assets
+import googleSignInImage from "../../assets/images/google-signin.png"
 
 class Home extends React.Component {
   constructor(props) {
@@ -36,6 +44,11 @@ class Home extends React.Component {
     }
   }
 
+  //Handle Browse
+  handleBrowse() {
+    console.log("browse");
+  }
+
   // Handles when create card is clicked
   handleCreate() {
     let { userLoggedIn } = this.state;
@@ -46,17 +59,49 @@ class Home extends React.Component {
     }
   }
 
+  // Creates a room
+  async handleRoomCreate(roomType, roomTitle, roomHost, roomId, hostEmail) {
+    let roomData = {
+      title: roomTitle,
+      host: roomHost,
+      room_id: roomId,
+      room_type: roomType,
+      host_email: hostEmail,
+    };
+
+    let roomInfo = await createRoom(roomData);
+    await this.props.roomInfoAction(roomInfo);
+  }
+
   // Inside of the create card
   renderCreate() {
+    let { userInfo } = this.props;
+
     var randomRoomKey =
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15);
 
+    var roomTitle = "Some Room Name";
+    var roomTitle = snakeCase(roomTitle);
+
+    var roomHost = userInfo.user.first_name;
+    var roomHost = snakeCase(roomHost);
+
+    var hostEmail = userInfo.user.email;
     return (
       <div className="create-container">
         <div className="create-public">
           <Link
-            to={`/meet/public/${randomRoomKey}`}
+            onClick={() =>
+              this.handleRoomCreate(
+                "public",
+                roomTitle,
+                roomHost,
+                randomRoomKey,
+                hostEmail
+              )
+            }
+            to={`/meet/public/${roomTitle}/${roomHost}/${randomRoomKey}`}
             style={{ textDecoration: "none", color: "#000000" }}
           >
             Public
@@ -65,7 +110,16 @@ class Home extends React.Component {
 
         <div className="create-private">
           <Link
-            to={`/meet/private/${randomRoomKey}`}
+            onClick={() =>
+              this.handleRoomCreate(
+                "private",
+                roomTitle,
+                roomHost,
+                randomRoomKey,
+                hostEmail
+              )
+            }
+            to={`/meet/private/${roomTitle}/${roomHost}/${randomRoomKey}`}
             style={{ textDecoration: "none", color: "#000000" }}
           >
             Private
@@ -81,7 +135,7 @@ class Home extends React.Component {
         onClick={() => (window.location.href = "/login")}
         className="signup-container"
       >
-        SIGN IN GOOGLE
+        SIGN IN
       </div>
     );
   }
@@ -113,7 +167,12 @@ class Home extends React.Component {
       <div className="container">
         <div className="row title-container">
           <div className="col-auto homepage-title">
-            {isAccountDetailsPage ? "ACCOUNT" : "HOME"}
+            <Link
+              to={isAccountDetailsPage ? "/" : "/"}
+              style={{ textDecoration: "none", color: "#000000" }}
+            >
+              {isAccountDetailsPage ? "ACCOUNT" : "VMS"}
+            </Link>
           </div>
           <div className="col profile-icon-container">
             <div className="profile-icon">
@@ -140,17 +199,40 @@ class Home extends React.Component {
           </div>
         </div>
 
-        <div className="row tagline-container">Work Better Together.</div>
+        <div className="info-cards-container">
+          <div className="info-container">
+            <div className="info-tagline">Work Better Together.</div>
+            <div className="info-description">
+              Create co-working, studying, coding, and workout spaces
+            </div>
 
-        <div className="row cards-container">
-          <div className="browse-card">BROWSE</div>
+            <div className="social-login-buttons">
+              {userLoggedIn ? null : (
+                <img
+                  onClick={() => (window.location.href = "/login")}
+                  src={googleSignInImage}
+                  width="200"
+                />
+              )}
+            </div>
+          </div>
+          <div className="middle-line"></div>
 
-          <div onClick={() => this.handleCreate()} className="create-card">
-            {showSignUp
-              ? this.renderSignUp()
-              : isCreating
-              ? this.renderCreate()
-              : "CREATE"}
+          <div className="cards-container">
+            <div onClick={() => this.handleCreate()} className="create-card">
+              {showSignUp
+                ? this.renderSignUp()
+                : isCreating
+                ? this.renderCreate()
+                : "CREATE"}
+            </div>
+            <Link
+              style={{ textDecoration: "none", color: "#000000" }}
+              className="browse-card"
+              to={"/browse"}
+            >
+              <div onClick={() => this.handleBrowse()}>BROWSE</div>
+            </Link>
           </div>
         </div>
       </div>
@@ -168,6 +250,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       // Actions go here
       userInfoAction,
+      roomInfoAction,
     },
     dispatch
   );

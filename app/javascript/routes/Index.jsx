@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "../components/Home";
 import Room from "../components/Room";
+import Browse from "../components/Browse";
 
 import "./index.css";
 import "typeface-roboto";
@@ -22,7 +23,16 @@ export default (
       <div className="appWrapper">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/meet/:room_type/:room_id" component={Room} />
+          <Route
+            exact
+            path="/meet/:room_type/:room_name/:host/:room_id"
+            component={Room}
+          />
+          <Route
+            exact
+            path="/browse"
+            component={Browse}
+          />
         </Switch>
       </div>
     </Router>

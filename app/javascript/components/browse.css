@@ -1,0 +1,48 @@
+.title-container {
+  margin-top: 8px;
+  padding: 8px;
+}
+
+.browse-title {
+  font-size: 24px;
+  letter-spacing: 1.6px;
+  color: #000000;
+  border-bottom: 1.5px solid #000000;
+}
+
+.profile-icon-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.room-container {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-rooms {
+  margin-top: 1%;
+  font-size: 18px;
+}
+
+.my-rooms-container {
+
+  margin-top: 2%;
+  vertical-align: middle;
+  display: inline-block;
+  width: 100%;
+  overflow: auto;
+  background-color:transparent;
+}
+
+.room-card {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  background-color: black;
+  display: inline-block;
+  margin: 10px;
+  line-height: 100px;
+}

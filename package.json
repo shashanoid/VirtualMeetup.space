@@ -16,6 +16,7 @@
     "react": "^16.13.1",
     "react-datetime": "^2.16.3",
     "react-dom": "^16.13.1",
+    "react-jutsu": "^2.1.4",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-widgets": "^4.5.0",

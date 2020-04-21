@@ -38,3 +38,14 @@ export async function createRoom(roomData) {
     }
   }
 }
+
+
+export async function getRoom(roomId){
+  const response = await axios.get(`/room/info/${roomId}`)
+  return response.data
+}
+
+export async function getAllRooms(){
+  const response = await axios.get('/room/get_current_user_rooms')
+  return response.data
+}

@@ -4,7 +4,7 @@ const autoBind = require("auto-bind");
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { createRoom } from "../api/utils";
+import { getRoom } from "../api/utils";
 
 // Redux Actions
 import { roomInfoAction } from "../actions/roomInfoAction";
@@ -12,15 +12,18 @@ import { roomInfoAction } from "../actions/roomInfoAction";
 class Room extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      inviteLink: null,
+      isHost: false,
+    };
   }
 
   async componentDidMount() {
-    let splitURL = window.location.href.split("/");
-    let roomType = splitURL[4];
-    let roomTitle = splitURL[5];
-    let roomHost = splitURL[6];
-    let roomId = splitURL[7];
+    let roomLink = window.location.href.split("/");
+    let roomType = roomLink[4];
+    let roomTitle = roomLink[5];
+    let roomHost = roomLink[6];
+    let roomId = roomLink[7];
 
     let roomData = {
       title: roomTitle,
@@ -29,16 +32,31 @@ class Room extends React.Component {
       room_type: roomType,
     };
 
-    let roomInfo = await createRoom(roomData);
+    let roomInfo = await getRoom(roomId);
     await this.props.roomInfoAction(roomInfo);
 
-    console.log(roomInfo);
+    if (roomHost != "attend") {
+      this.setState({ isHost: true });
+    } else {
+      // User is attendee
+      console.log("Attendee");
+    }
+  }
+
+  createInviteLink() {
+    let roomLink = window.location.href.split("/");
+    roomLink[6] = "attend";
+    this.setState({ inviteLink: roomLink.join("/") });
   }
 
   render() {
+    let { isHost } = this.state;
     return (
       <div>
         <h1>Room Created !</h1>
+        {isHost ? (
+          <button onClick={() => this.createInviteLink()}> Invite Link</button>
+        ) : null}
       </div>
     );
   }

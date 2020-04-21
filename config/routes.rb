@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   post 'room/create', to: 'room#create'
+  get '/room/info/:room_id', to: 'room#get_room'
+  get '/room/get_current_user_rooms', to: 'room#get_all_rooms'
   get '/meet' ,to: "room#show"
   #User management
 

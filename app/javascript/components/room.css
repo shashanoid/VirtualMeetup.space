@@ -1,0 +1,16 @@
+.title-container {
+  margin-top: 8px;
+  padding: 8px;
+}
+
+.room-title {
+  font-size: 24px;
+  letter-spacing: 1.6px;
+  color: #000000;
+  border-bottom: 1.5px solid #000000;
+}
+
+.profile-icon-container {
+  display: flex;
+  justify-content: flex-end;
+}

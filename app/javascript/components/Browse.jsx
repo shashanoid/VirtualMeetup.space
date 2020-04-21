@@ -45,7 +45,7 @@ class Browse extends React.Component {
                 host={_item.host}
                 roomId={_item.room_id}
                 roomType={_item.room_type}
-                roomTitle={_item.title.split("_").join(" ")}
+                roomTitle={_item.title}
               />
             ))}
           </div>

@@ -14,3 +14,8 @@
   display: flex;
   justify-content: flex-end;
 }
+
+
+.jitsi-container{
+  margin-top: 6%;
+}

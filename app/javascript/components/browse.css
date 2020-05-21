@@ -17,14 +17,15 @@
 
 .room-container {
   width: 100%;
-  height: 500px;
   display: flex;
   flex-direction: column;
+  margin-left: -5px;
 }
 
 .my-rooms {
   margin-top: 1%;
   font-size: 18px;
+  margin-left: 5px;
 }
 
 .my-rooms-container {

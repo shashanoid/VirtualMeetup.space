@@ -14,7 +14,7 @@ class Browse extends React.Component {
     super(props);
     autoBind(this);
     this.state = {
-      userRooms: [{ title: "Loading" }],
+      userRooms: [{ title: "Loading..." }],
     };
   }
 
@@ -50,7 +50,7 @@ class Browse extends React.Component {
             ))}
           </div>
         </div>
-      </div>
+      </div> 
     );
   }
 }

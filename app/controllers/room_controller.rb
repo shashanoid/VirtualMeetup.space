@@ -1,5 +1,6 @@
 class RoomController < ApplicationController
-  before_action :authenticate
+  before_action :authenticate, except: [:get_room, :get_all_rooms]
+
   skip_before_action :verify_authenticity_token
 
   def create

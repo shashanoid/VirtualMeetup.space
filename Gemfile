@@ -48,3 +48,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Google Auth
 gem 'omniauth-google-oauth2'
+
+#Thumbnailer
+gem 'link_thumbnailer'
+

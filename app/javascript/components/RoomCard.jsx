@@ -19,7 +19,12 @@ class RoomCard extends React.Component {
         style={{ textDecoration: "none", color: "#000000" }}
       >
         <div onClick={() => this.openRoom()} class="card-container">
-          <div class="card-snapshot"> </div>
+          <div class="card-snapshot">
+            <img
+              className="card-snapshot-image"
+              src="https://miro.medium.com/max/3416/1*5nbbUSIRdpM5ihCwEDrN4g.jpeg"
+            ></img>{" "}
+          </div>
           <div class="card-divider"> </div>
           <div class="card-title">
             {this.props.roomTitle.split("_").join(" ")}

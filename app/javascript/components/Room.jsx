@@ -17,18 +17,8 @@ class Room extends React.Component {
     this.state = {
       inviteLink: null,
       isHost: false,
-      room: "nix",
-      name: "nix",
-      password: "ok",
-      loading: true,
-    };
-
-    this.loading = this.state.loading;
-
-    const jitsiContainerStyle = {
-      display: this.loading ? "none" : "block",
-      width: "100%",
-      height: "100%",
+      roomName: "",
+      roomKey: "",
     };
   }
 
@@ -50,24 +40,36 @@ class Room extends React.Component {
     await this.props.roomInfoAction(roomInfo);
 
     if (roomHost != "attend") {
-      this.setState({ isHost: true });
+      await this.setState({
+        isHost: true,
+        roomName: roomInfo.title,
+        roomKey: roomInfo.room_id,
+      });
     } else {
       // User is attendee
       console.log("Attendee");
     }
+
+    const api = await this.startConference(roomInfo.title, roomInfo.room_id);
   }
 
-  createInviteLink() {
-    let roomLink = window.location.href.split("/");
-    roomLink[6] = "attend";
-    this.setState({ inviteLink: roomLink.join("/") });
-  }
+  // async componentDidMount(){
+  //   await this.api.executeCommand('password', 'Nice One')
+  // }
 
-  startConference() {
+  // createInviteLink() {
+  //   let roomLink = window.location.href.split("/");
+  //   roomLink[6] = "attend";
+  //   this.setState({ inviteLink: roomLink.join("/") });
+  // }
+
+  // Start Jitsi conference
+  startConference(roomName, roomKey) {
     try {
       const domain = "meet.jit.si";
       const options = {
-        roomName: "roomName",
+        roomName: roomKey,
+        password: roomKey,
         height: 400,
         parentNode: document.getElementById("jitsi-container"),
         interfaceConfigOverwrite: {
@@ -82,32 +84,29 @@ class Room extends React.Component {
       const api = new JitsiMeetExternalAPI(domain, options);
       api.addEventListener("videoConferenceJoined", () => {
         console.log("Local User Joined");
-        setLoading(false);
         api.executeCommand("displayName", "MyName");
       });
+      return api;
     } catch (error) {
       console.error("Failed to load Jitsi API", error);
     }
   }
 
-  async componentDidMount() {
-    await this.startConference();
-  }
-
   render() {
-    let { isHost, room, name, password } = this.state;
     return (
       <div className="container">
         <div className="row title-container">
           <div className="col-auto room-title">
             <Link style={{ textDecoration: "none", color: "#000000" }} to="/">
-              ROOM
+              HOME
             </Link>
           </div>
           <div className="col profile-icon-container"></div>
         </div>
 
-        <div id="jitsi-container" style={{ width: "100%", height: "100%" }} />
+        <div className="jitsi-container">
+          <div id="jitsi-container" style={{ width: "100%", height: "100%" }} />
+        </div>
       </div>
     );
   }

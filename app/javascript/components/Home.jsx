@@ -16,7 +16,7 @@ import { roomInfoAction } from "../actions/roomInfoAction";
 import { userInfoAction } from "../actions/userInfoAction";
 
 // Image Assets
-import googleSignInImage from "../../assets/images/google-signin.png"
+import googleSignInImage from "../../assets/images/google-signin.png";
 
 class Home extends React.Component {
   constructor(props) {
@@ -28,6 +28,7 @@ class Home extends React.Component {
       showSignUp: false,
       isCreating: false,
       profilePicture: null,
+      isEnteringRoomName: false
     };
   }
 
@@ -71,11 +72,12 @@ class Home extends React.Component {
 
     let roomInfo = await createRoom(roomData);
     await this.props.roomInfoAction(roomInfo);
+    window.location.href = `/meet/${roomType}/${roomTitle}/${roomHost}/${roomId}`;
   }
 
   // Inside of the create card
   renderCreate() {
-    let { userInfo } = this.props;
+    let { userInfo, isEnteringRoomName } = this.props;
 
     var randomRoomKey =
       Math.random().toString(36).substring(2, 15) +
@@ -101,7 +103,6 @@ class Home extends React.Component {
                 hostEmail
               )
             }
-            to={`/meet/public/${roomTitle}/${roomHost}/${randomRoomKey}`}
             style={{ textDecoration: "none", color: "#000000" }}
           >
             Public
@@ -119,7 +120,6 @@ class Home extends React.Component {
                 hostEmail
               )
             }
-            to={`/meet/private/${roomTitle}/${roomHost}/${randomRoomKey}`}
             style={{ textDecoration: "none", color: "#000000" }}
           >
             Private
@@ -219,13 +219,6 @@ class Home extends React.Component {
           <div className="middle-line"></div>
 
           <div className="cards-container">
-            <div onClick={() => this.handleCreate()} className="create-card">
-              {showSignUp
-                ? this.renderSignUp()
-                : isCreating
-                ? this.renderCreate()
-                : "CREATE"}
-            </div>
             <Link
               style={{ textDecoration: "none", color: "#000000" }}
               className="browse-card"
@@ -233,6 +226,13 @@ class Home extends React.Component {
             >
               <div onClick={() => this.handleBrowse()}>BROWSE</div>
             </Link>
+            <div onClick={() => this.handleCreate()} className="create-card">
+              {showSignUp
+                ? this.renderSignUp()
+                : isCreating
+                ? this.renderCreate()
+                : "CREATE"}
+            </div>
           </div>
         </div>
       </div>
